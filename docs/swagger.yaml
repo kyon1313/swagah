@@ -1,0 +1,704 @@
+basePath: /
+definitions:
+  model.User:
+    properties:
+      id:
+        description: User ID
+        type: integer
+      lastname:
+        type: string
+      middlename:
+        type: string
+      name:
+        type: string
+    type: object
+  route.Acc:
+    properties:
+      acc:
+        type: string
+    type: object
+  route.AmortList:
+    type: object
+  route.Charges:
+    properties:
+      acc:
+        type: string
+      charges:
+        items:
+          $ref: '#/definitions/route.Charges'
+        type: array
+    type: object
+  route.CustSavingInfo:
+    properties:
+      acc:
+        type: string
+      accDesc:
+        type: string
+      acctType:
+        type: integer
+      appType:
+        type: integer
+      balance:
+        type: number
+      cid:
+        type: integer
+      classificationCode:
+        type: integer
+      classificationType:
+        type: integer
+      dopen:
+        type: string
+      status:
+        type: integer
+    type: object
+  route.CustSavingsListss:
+    properties:
+      acc:
+        type: string
+      accDesc:
+        type: string
+      acctType:
+        type: integer
+      balance:
+        type: number
+      cid:
+        type: integer
+      dopen:
+        type: string
+      status:
+        type: integer
+      statusDesc:
+        type: string
+    type: object
+  route.Errror:
+    properties:
+      errormessage:
+        type: string
+    type: object
+  route.GenerateCol:
+    properties:
+      acc:
+        type: string
+      acctDesc:
+        type: string
+      accttype:
+        type: integer
+      amort:
+        type: number
+      appType:
+        type: integer
+      area:
+        type: string
+      areaCode:
+        type: integer
+      balInt:
+        type: integer
+      balPrin:
+        type: integer
+      centerCode:
+        type: integer
+      centerName:
+        type: string
+      classDesc:
+        type: string
+      classification:
+        type: integer
+      clientName:
+        type: string
+      code:
+        type: integer
+      dateStart:
+        type: string
+      disbdate:
+        type: string
+      dueInt:
+        type: integer
+      duePrin:
+        type: number
+      gives:
+        type: integer
+      ibalInt:
+        type: integer
+      ibalPrin:
+        type: integer
+      iiid:
+        type: integer
+      interest:
+        type: integer
+      loanBal:
+        type: integer
+      manCode:
+        type: integer
+      maturity:
+        type: string
+      pay:
+        type: number
+      principal:
+        type: integer
+      saveBal:
+        type: number
+      staffName:
+        type: string
+      status:
+        type: integer
+      statusDesc:
+        type: string
+      type:
+        type: integer
+      um:
+        type: string
+      unit:
+        type: string
+      unpaidCtr:
+        type: integer
+      uuid: {}
+      waiveInt:
+        type: integer
+      withdraw:
+        type: number
+      writeoff:
+        type: integer
+      writtenoff:
+        type: integer
+    type: object
+  route.JsonStruct:
+    properties:
+      accountNumber:
+        type: string
+      address: {}
+      birthPlace:
+        type: string
+      brCode:
+        type: integer
+      business:
+        type: integer
+      centerCode:
+        type: integer
+      centerName:
+        type: string
+      cid:
+        type: integer
+      civilStatus:
+        type: integer
+      classification:
+        type: integer
+      contact: {}
+      doBirth:
+        type: string
+      doEntry:
+        type: string
+      doRecognized:
+        type: string
+      doResigned:
+        type: string
+      dosri:
+        type: integer
+      firstname:
+        type: string
+      lastname:
+        type: string
+      maidenFname:
+        type: string
+      maidenLName:
+        type: string
+      maidenMName:
+        type: string
+      memberMaidenFName:
+        type: string
+      memberMaidenLName:
+        type: string
+      memberMaidenMName:
+        type: string
+      middlename:
+        type: string
+      reffered:
+        type: string
+      remarks:
+        type: string
+      searchName:
+        type: string
+      sex:
+        type: integer
+      status:
+        type: integer
+      subClassification:
+        type: integer
+      title:
+        type: integer
+      unitCode:
+        type: integer
+      unitName:
+        type: string
+    type: object
+  route.LaonInfo:
+    properties:
+      acc:
+        type: string
+      accDesc:
+        type: string
+      acctType:
+        type: integer
+      amort: {}
+      amortList:
+        items:
+          $ref: '#/definitions/route.AmortList'
+        type: array
+      amortcond:
+        type: integer
+      amortcondvalue:
+        type: integer
+      annumdiv:
+        type: integer
+      appType:
+        type: integer
+      approvby:
+        type: string
+      balance:
+        type: integer
+      charges:
+        $ref: '#/definitions/route.Charges'
+      cid:
+        type: integer
+      classification_code:
+        type: integer
+      classification_type:
+        type: integer
+      conintrate:
+        type: integer
+      cycle:
+        type: integer
+      disbby:
+        type: string
+      discounted:
+        type: integer
+      domaturity:
+        type: string
+      dopen:
+        type: string
+      frequency:
+        type: integer
+      fundsource:
+        type: integer
+      interest:
+        type: integer
+      intr:
+        type: integer
+      isLumpsum:
+        type: integer
+      lngrpcode:
+        type: integer
+      loanID: {}
+      netproceed:
+        type: integer
+      oth:
+        type: integer
+      others:
+        type: integer
+      penalty:
+        type: integer
+      prin:
+        type: integer
+      principal:
+        type: integer
+      proff:
+        type: integer
+      remarks: {}
+      status:
+        type: integer
+      term:
+        type: integer
+      waivedint:
+        type: integer
+      weekspaid:
+        type: integer
+    type: object
+  route.LoanList:
+    properties:
+      acc:
+        type: string
+      acctType:
+        type: string
+      balance:
+        type: number
+      dateRelease:
+        type: string
+      interest:
+        type: number
+      oth:
+        type: number
+      paidTerm:
+        type: integer
+      principal:
+        type: number
+      status:
+        type: string
+      term:
+        type: integer
+    type: object
+  route.Use:
+    properties:
+      cid:
+        example: 9
+        type: integer
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a sample swagger for Fiber
+  title: My Fucking Swaggah Jagahh.
+  version: "1.0"
+paths:
+  /janus/customerSavings/:
+    post:
+      consumes:
+      - application/json
+      description: Customer Savings List
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.CustSavingsListss'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Customer Savings List
+      tags:
+      - Janus
+  /janus/loanlist/:
+    post:
+      consumes:
+      - application/json
+      description: Loan List
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.LoanList'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Loan List
+      tags:
+      - Janus
+  /janus/searchCID/:
+    post:
+      consumes:
+      - application/json
+      description: SearchCustomerCID
+      parameters:
+      - description: SearchbyCid
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.JsonStruct'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: SearchCustomerCID
+      tags:
+      - Janus
+  /proj1/add/:
+    post:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: Add user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Add users
+      tags:
+      - Adding
+  /proj1/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Delete user
+      tags:
+      - Deleting
+  /proj1/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: show 1 user
+      tags:
+      - Getting
+  /proj1/gets/:
+    get:
+      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Show all users
+      tags:
+      - Getting
+  /proj1/update/:
+    put:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: Update User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Add users
+      tags:
+      - Updating
+  /swag/custSavingsList:
+    post:
+      consumes:
+      - application/json
+      description: Customer Savings List
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.CustSavingsListss'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Customer Savings List
+      tags:
+      - Janus Hard coded data
+  /swag/custSavingsinfo:
+    post:
+      consumes:
+      - application/json
+      description: Customer Savings Info
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Acc'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.CustSavingInfo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Customer Savings Info
+      tags:
+      - Janus Hard coded data
+  /swag/generateCol:
+    post:
+      consumes:
+      - application/json
+      description: Generate Col
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.GenerateCol'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Generate  Col
+      tags:
+      - Janus Hard coded data
+  /swag/loanInfo:
+    post:
+      consumes:
+      - application/json
+      description: Loan Info
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Acc'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.LaonInfo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Loan Info
+      tags:
+      - Janus Hard coded data
+  /swag/loanlisthard:
+    post:
+      consumes:
+      - application/json
+      description: Loanlist
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.LoanList'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: LoanList
+      tags:
+      - Janus Hard coded data
+  /swag/search/:
+    post:
+      consumes:
+      - application/json
+      description: SearchCustomerCID
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.JsonStruct'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: SearchCustomerCID
+      tags:
+      - Janus Hard coded data
+swagger: "2.0"

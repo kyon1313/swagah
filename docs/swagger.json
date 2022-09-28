@@ -1,0 +1,1070 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample swagger for Fiber",
+        "title": "My Fucking Swaggah Jagahh.",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/janus/customerSavings/": {
+            "post": {
+                "description": "Customer Savings List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "Customer Savings List",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.CustSavingsListss"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/janus/loanlist/": {
+            "post": {
+                "description": "Loan List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "Loan List",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.LoanList"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/janus/searchCID/": {
+            "post": {
+                "description": "SearchCustomerCID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "SearchCustomerCID",
+                "parameters": [
+                    {
+                        "description": "SearchbyCid",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.JsonStruct"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/proj1/add/": {
+            "post": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Adding"
+                ],
+                "summary": "Add users",
+                "parameters": [
+                    {
+                        "description": "Add user",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/proj1/delete/{id}": {
+            "delete": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Deleting"
+                ],
+                "summary": "Delete user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/proj1/get/{id}": {
+            "get": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Getting"
+                ],
+                "summary": "show 1 user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/proj1/gets/": {
+            "get": {
+                "description": "get string by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Getting"
+                ],
+                "summary": "Show all users",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/proj1/update/": {
+            "put": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Updating"
+                ],
+                "summary": "Add users",
+                "parameters": [
+                    {
+                        "description": "Update User",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/swag/custSavingsList": {
+            "post": {
+                "description": "Customer Savings List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus Hard coded data"
+                ],
+                "summary": "Customer Savings List",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.CustSavingsListss"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/swag/custSavingsinfo": {
+            "post": {
+                "description": "Customer Savings Info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus Hard coded data"
+                ],
+                "summary": "Customer Savings Info",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Acc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.CustSavingInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/swag/generateCol": {
+            "post": {
+                "description": "Generate Col",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus Hard coded data"
+                ],
+                "summary": "Generate  Col",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.GenerateCol"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/swag/loanInfo": {
+            "post": {
+                "description": "Loan Info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus Hard coded data"
+                ],
+                "summary": "Loan Info",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Acc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.LaonInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/swag/loanlisthard": {
+            "post": {
+                "description": "Loanlist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus Hard coded data"
+                ],
+                "summary": "LoanList",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.LoanList"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/swag/search/": {
+            "post": {
+                "description": "SearchCustomerCID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus Hard coded data"
+                ],
+                "summary": "SearchCustomerCID",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.JsonStruct"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "User ID",
+                    "type": "integer"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "middlename": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.Acc": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.AmortList": {
+            "type": "object"
+        },
+        "route.Charges": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                },
+                "charges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/route.Charges"
+                    }
+                }
+            }
+        },
+        "route.CustSavingInfo": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                },
+                "accDesc": {
+                    "type": "string"
+                },
+                "acctType": {
+                    "type": "integer"
+                },
+                "appType": {
+                    "type": "integer"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "classificationCode": {
+                    "type": "integer"
+                },
+                "classificationType": {
+                    "type": "integer"
+                },
+                "dopen": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "route.CustSavingsListss": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                },
+                "accDesc": {
+                    "type": "string"
+                },
+                "acctType": {
+                    "type": "integer"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "dopen": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "statusDesc": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.Errror": {
+            "type": "object",
+            "properties": {
+                "errormessage": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.GenerateCol": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                },
+                "acctDesc": {
+                    "type": "string"
+                },
+                "accttype": {
+                    "type": "integer"
+                },
+                "amort": {
+                    "type": "number"
+                },
+                "appType": {
+                    "type": "integer"
+                },
+                "area": {
+                    "type": "string"
+                },
+                "areaCode": {
+                    "type": "integer"
+                },
+                "balInt": {
+                    "type": "integer"
+                },
+                "balPrin": {
+                    "type": "integer"
+                },
+                "centerCode": {
+                    "type": "integer"
+                },
+                "centerName": {
+                    "type": "string"
+                },
+                "classDesc": {
+                    "type": "string"
+                },
+                "classification": {
+                    "type": "integer"
+                },
+                "clientName": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "dateStart": {
+                    "type": "string"
+                },
+                "disbdate": {
+                    "type": "string"
+                },
+                "dueInt": {
+                    "type": "integer"
+                },
+                "duePrin": {
+                    "type": "number"
+                },
+                "gives": {
+                    "type": "integer"
+                },
+                "ibalInt": {
+                    "type": "integer"
+                },
+                "ibalPrin": {
+                    "type": "integer"
+                },
+                "iiid": {
+                    "type": "integer"
+                },
+                "interest": {
+                    "type": "integer"
+                },
+                "loanBal": {
+                    "type": "integer"
+                },
+                "manCode": {
+                    "type": "integer"
+                },
+                "maturity": {
+                    "type": "string"
+                },
+                "pay": {
+                    "type": "number"
+                },
+                "principal": {
+                    "type": "integer"
+                },
+                "saveBal": {
+                    "type": "number"
+                },
+                "staffName": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "statusDesc": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "um": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "unpaidCtr": {
+                    "type": "integer"
+                },
+                "uuid": {},
+                "waiveInt": {
+                    "type": "integer"
+                },
+                "withdraw": {
+                    "type": "number"
+                },
+                "writeoff": {
+                    "type": "integer"
+                },
+                "writtenoff": {
+                    "type": "integer"
+                }
+            }
+        },
+        "route.JsonStruct": {
+            "type": "object",
+            "properties": {
+                "accountNumber": {
+                    "type": "string"
+                },
+                "address": {},
+                "birthPlace": {
+                    "type": "string"
+                },
+                "brCode": {
+                    "type": "integer"
+                },
+                "business": {
+                    "type": "integer"
+                },
+                "centerCode": {
+                    "type": "integer"
+                },
+                "centerName": {
+                    "type": "string"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "civilStatus": {
+                    "type": "integer"
+                },
+                "classification": {
+                    "type": "integer"
+                },
+                "contact": {},
+                "doBirth": {
+                    "type": "string"
+                },
+                "doEntry": {
+                    "type": "string"
+                },
+                "doRecognized": {
+                    "type": "string"
+                },
+                "doResigned": {
+                    "type": "string"
+                },
+                "dosri": {
+                    "type": "integer"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "maidenFname": {
+                    "type": "string"
+                },
+                "maidenLName": {
+                    "type": "string"
+                },
+                "maidenMName": {
+                    "type": "string"
+                },
+                "memberMaidenFName": {
+                    "type": "string"
+                },
+                "memberMaidenLName": {
+                    "type": "string"
+                },
+                "memberMaidenMName": {
+                    "type": "string"
+                },
+                "middlename": {
+                    "type": "string"
+                },
+                "reffered": {
+                    "type": "string"
+                },
+                "remarks": {
+                    "type": "string"
+                },
+                "searchName": {
+                    "type": "string"
+                },
+                "sex": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "subClassification": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "integer"
+                },
+                "unitCode": {
+                    "type": "integer"
+                },
+                "unitName": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.LaonInfo": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                },
+                "accDesc": {
+                    "type": "string"
+                },
+                "acctType": {
+                    "type": "integer"
+                },
+                "amort": {},
+                "amortList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/route.AmortList"
+                    }
+                },
+                "amortcond": {
+                    "type": "integer"
+                },
+                "amortcondvalue": {
+                    "type": "integer"
+                },
+                "annumdiv": {
+                    "type": "integer"
+                },
+                "appType": {
+                    "type": "integer"
+                },
+                "approvby": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "integer"
+                },
+                "charges": {
+                    "$ref": "#/definitions/route.Charges"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "classification_code": {
+                    "type": "integer"
+                },
+                "classification_type": {
+                    "type": "integer"
+                },
+                "conintrate": {
+                    "type": "integer"
+                },
+                "cycle": {
+                    "type": "integer"
+                },
+                "disbby": {
+                    "type": "string"
+                },
+                "discounted": {
+                    "type": "integer"
+                },
+                "domaturity": {
+                    "type": "string"
+                },
+                "dopen": {
+                    "type": "string"
+                },
+                "frequency": {
+                    "type": "integer"
+                },
+                "fundsource": {
+                    "type": "integer"
+                },
+                "interest": {
+                    "type": "integer"
+                },
+                "intr": {
+                    "type": "integer"
+                },
+                "isLumpsum": {
+                    "type": "integer"
+                },
+                "lngrpcode": {
+                    "type": "integer"
+                },
+                "loanID": {},
+                "netproceed": {
+                    "type": "integer"
+                },
+                "oth": {
+                    "type": "integer"
+                },
+                "others": {
+                    "type": "integer"
+                },
+                "penalty": {
+                    "type": "integer"
+                },
+                "prin": {
+                    "type": "integer"
+                },
+                "principal": {
+                    "type": "integer"
+                },
+                "proff": {
+                    "type": "integer"
+                },
+                "remarks": {},
+                "status": {
+                    "type": "integer"
+                },
+                "term": {
+                    "type": "integer"
+                },
+                "waivedint": {
+                    "type": "integer"
+                },
+                "weekspaid": {
+                    "type": "integer"
+                }
+            }
+        },
+        "route.LoanList": {
+            "type": "object",
+            "properties": {
+                "acc": {
+                    "type": "string"
+                },
+                "acctType": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "dateRelease": {
+                    "type": "string"
+                },
+                "interest": {
+                    "type": "number"
+                },
+                "oth": {
+                    "type": "number"
+                },
+                "paidTerm": {
+                    "type": "integer"
+                },
+                "principal": {
+                    "type": "number"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "term": {
+                    "type": "integer"
+                }
+            }
+        },
+        "route.Use": {
+            "type": "object",
+            "properties": {
+                "cid": {
+                    "type": "integer",
+                    "example": 9
+                }
+            }
+        }
+    }
+}
