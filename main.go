@@ -56,10 +56,14 @@ func Routes(app *fiber.App) {
 	janus.Post("/customerSavings", route.CustSavings)
 	//search loan list using cid
 	janus.Post("/loanlist", route.SearchLoanList)
-	//getting data from another api with swagger
+	///CoreAccounts/API/mobile/api/v1/SearchCustomerCID
+
 	janus.Post("/consuming", route.Consuming)
 	janus.Post("/searchCID", route.Consuming)
+	janus.Post("/loanInfoJanus", route.LoanInfoJanus)
 
+	janus.Post("/custSavingInfoJanus", route.CustSavingInfoJanus)
+	janus.Post("/generateColshit", route.GenerateColCidJanus)
 	/*
 		swagger hard coded data
 	*/
@@ -101,3 +105,24 @@ func getProductDetails(product_id []uint) []map[string]interface{} {
 	// fmt.Println(product)
 	return result
 }
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/CoreAccounts/API/custSavingInfo
+
+
+/CoreAccounts/API/generateColShtperCID
+*/

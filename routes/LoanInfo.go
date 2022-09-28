@@ -1,6 +1,14 @@
 package route
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"bytes"
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"net/http"
+
+	"github.com/gofiber/fiber/v2"
+)
 
 type LaonInfo struct {
 	Cid                 int         `json:"cid"`
@@ -13,17 +21,17 @@ type LaonInfo struct {
 	Term                int         `json:"term"`
 	Weekspaid           int         `json:"weekspaid"`
 	Status              int         `json:"status"`
-	Principal           int         `json:"principal"`
-	Interest            int         `json:"interest"`
-	Others              int         `json:"others"`
-	Discounted          int         `json:"discounted"`
-	Netproceed          int         `json:"netproceed"`
-	Balance             int         `json:"balance"`
-	Prin                int         `json:"prin"`
-	Intr                int         `json:"intr"`
-	Oth                 int         `json:"oth"`
-	Penalty             int         `json:"penalty"`
-	Waivedint           int         `json:"waivedint"`
+	Principal           float64     `json:"principal"`
+	Interest            float64     `json:"interest"`
+	Others              float64     `json:"others"`
+	Discounted          float64     `json:"discounted"`
+	Netproceed          float64     `json:"netproceed"`
+	Balance             float64     `json:"balance"`
+	Prin                float64     `json:"prin"`
+	Intr                float64     `json:"intr"`
+	Oth                 float64     `json:"oth"`
+	Penalty             float64     `json:"penalty"`
+	Waivedint           float64     `json:"waivedint"`
 	Disbby              string      `json:"disbby"`
 	Approvby            string      `json:"approvby"`
 	Cycle               int         `json:"cycle"`
@@ -32,9 +40,9 @@ type LaonInfo struct {
 	Lngrpcode           int         `json:"lngrpcode"`
 	Proff               int         `json:"proff"`
 	Fundsource          int         `json:"fundsource"`
-	Conintrate          int         `json:"conintrate"`
+	Conintrate          float64     `json:"conintrate"`
 	Amortcond           int         `json:"amortcond"`
-	Amortcondvalue      int         `json:"amortcondvalue"`
+	Amortcondvalue      float64     `json:"amortcondvalue"`
 	Classification_code int         `json:"classification_code"`
 	Classification_type int         `json:"classification_type"`
 	Remarks             interface{} `json:"remarks"`
@@ -42,13 +50,31 @@ type LaonInfo struct {
 	IsLumpsum           int         `json:"isLumpsum"`
 	LoanID              interface{} `json:"loanID"`
 	AmortList           []AmortList `json:"amortList"`
-	Charges             Charges     `json:"charges"`
+	Charges             interface{} `json:"charges"`
 }
 
-type AmortList struct{}
+type AmortList struct {
+	Dnum        int     `json:"dnum"`
+	Acc         string  `json:"acc"`
+	DueDate     string  `json:"dueDate"`
+	InstFlag    int     `json:"instFlag"`
+	Prin        float64 `json:"prin"`
+	Intr        float64 `json:"intr"`
+	Oth         float64 `json:"oth"`
+	Penalty     float64 `json:"penalty"`
+	EndBal      float64 `json:"endBal"`
+	EndInt      float64 `json:"endInt"`
+	EndOth      float64 `json:"endOth"`
+	InstPd      float64 `json:"instPd"`
+	PenPd       float64 `json:"penPd"`
+	CarVal      float64 `json:"carVal"`
+	UpInt       float64 `json:"upInt"`
+	ServFee     float64 `json:"servFee"`
+	PledgeAmort float64 `json:"pledgeAmort"`
+}
 type Charges struct {
-	Acc    string    `json:"acc"`
-	Charge []Charges `json:"charges"`
+	Acc    interface{} `json:"acc"`
+	Charge []Charges   `json:"charges"`
 }
 
 // Janus godoc
@@ -112,4 +138,45 @@ func LoansInfo(c *fiber.Ctx) error {
 		},
 	}
 	return c.JSON(a)
+}
+
+// Janus kumware godoc
+// @Summary     Loan info
+// @Description  Loan info
+// @Tags         Janus
+// @Accept       json
+// @Produce      json
+// @Param        user body Acc true "Search"
+// @Success      200  {object} LaonInfo
+// @Failure      400  {object}  Errror
+// @Router       /janus/loanInfoJanus/ [post]
+func LoanInfoJanus(c *fiber.Ctx) error {
+	var user Acc
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.SendString("fucking shit")
+	}
+
+	jsonReq, err := json.Marshal(user)
+
+	resp, err := http.Post("https://cmfstest.cardmri.com/CoreAccounts/API/LoanInfo", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
+	if err != nil {
+		log.Printf("Request Failed: %s", err)
+		return c.SendString("fucking shit")
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	// Log the request body
+	bodyString := string(body)
+	log.Print(bodyString)
+	// Unmarshal result
+	result := []LaonInfo{}
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		log.Printf("Reading body failed: %s", err)
+		return c.SendString("fucking shit")
+	}
+
+	return c.JSON(result)
 }

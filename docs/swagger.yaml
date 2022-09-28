@@ -18,20 +18,45 @@ definitions:
         type: string
     type: object
   route.AmortList:
-    type: object
-  route.Charges:
     properties:
       acc:
         type: string
-      charges:
-        items:
-          $ref: '#/definitions/route.Charges'
-        type: array
+      carVal:
+        type: number
+      dnum:
+        type: integer
+      dueDate:
+        type: string
+      endBal:
+        type: number
+      endInt:
+        type: number
+      endOth:
+        type: number
+      instFlag:
+        type: integer
+      instPd:
+        type: number
+      intr:
+        type: number
+      oth:
+        type: number
+      penPd:
+        type: number
+      penalty:
+        type: number
+      pledgeAmort:
+        type: number
+      prin:
+        type: number
+      servFee:
+        type: number
+      upInt:
+        type: number
     type: object
   route.CustSavingInfo:
     properties:
-      acc:
-        type: string
+      acc: {}
       accDesc:
         type: string
       acctType:
@@ -92,9 +117,9 @@ definitions:
       areaCode:
         type: integer
       balInt:
-        type: integer
+        type: number
       balPrin:
-        type: integer
+        type: number
       centerCode:
         type: integer
       centerName:
@@ -112,21 +137,21 @@ definitions:
       disbdate:
         type: string
       dueInt:
-        type: integer
+        type: number
       duePrin:
         type: number
       gives:
         type: integer
       ibalInt:
-        type: integer
+        type: number
       ibalPrin:
-        type: integer
+        type: number
       iiid:
         type: integer
       interest:
-        type: integer
+        type: number
       loanBal:
-        type: integer
+        type: number
       manCode:
         type: integer
       maturity:
@@ -134,7 +159,7 @@ definitions:
       pay:
         type: number
       principal:
-        type: integer
+        type: number
       saveBal:
         type: number
       staffName:
@@ -153,7 +178,7 @@ definitions:
         type: integer
       uuid: {}
       waiveInt:
-        type: integer
+        type: number
       withdraw:
         type: number
       writeoff:
@@ -246,7 +271,7 @@ definitions:
       amortcond:
         type: integer
       amortcondvalue:
-        type: integer
+        type: number
       annumdiv:
         type: integer
       appType:
@@ -254,9 +279,8 @@ definitions:
       approvby:
         type: string
       balance:
-        type: integer
-      charges:
-        $ref: '#/definitions/route.Charges'
+        type: number
+      charges: {}
       cid:
         type: integer
       classification_code:
@@ -264,13 +288,13 @@ definitions:
       classification_type:
         type: integer
       conintrate:
-        type: integer
+        type: number
       cycle:
         type: integer
       disbby:
         type: string
       discounted:
-        type: integer
+        type: number
       domaturity:
         type: string
       dopen:
@@ -280,26 +304,26 @@ definitions:
       fundsource:
         type: integer
       interest:
-        type: integer
+        type: number
       intr:
-        type: integer
+        type: number
       isLumpsum:
         type: integer
       lngrpcode:
         type: integer
       loanID: {}
       netproceed:
-        type: integer
+        type: number
       oth:
-        type: integer
+        type: number
       others:
-        type: integer
+        type: number
       penalty:
-        type: integer
+        type: number
       prin:
-        type: integer
+        type: number
       principal:
-        type: integer
+        type: number
       proff:
         type: integer
       remarks: {}
@@ -308,7 +332,7 @@ definitions:
       term:
         type: integer
       waivedint:
-        type: integer
+        type: number
       weekspaid:
         type: integer
     type: object
@@ -348,6 +372,32 @@ info:
   title: My Fucking Swaggah Jagahh.
   version: "1.0"
 paths:
+  /janus/custSavingInfoJanus/:
+    post:
+      consumes:
+      - application/json
+      description: Loan info
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Acc'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.CustSavingInfo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Loan info
+      tags:
+      - Janus
   /janus/customerSavings/:
     post:
       consumes:
@@ -372,6 +422,58 @@ paths:
           schema:
             $ref: '#/definitions/route.Errror'
       summary: Customer Savings List
+      tags:
+      - Janus
+  /janus/generateColshit/:
+    post:
+      consumes:
+      - application/json
+      description: Loan info
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Use'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.GenerateCol'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Loan info
+      tags:
+      - Janus
+  /janus/loanInfoJanus/:
+    post:
+      consumes:
+      - application/json
+      description: Loan info
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.Acc'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.LaonInfo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: Loan info
       tags:
       - Janus
   /janus/loanlist/:

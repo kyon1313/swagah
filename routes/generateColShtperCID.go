@@ -1,6 +1,14 @@
 package route
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"bytes"
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"net/http"
+
+	"github.com/gofiber/fiber/v2"
+)
 
 type GenerateCol struct {
 	AppType        int         `json:"appType"`
@@ -23,26 +31,26 @@ type GenerateCol struct {
 	Disbdate       string      `json:"disbdate"`
 	DateStart      string      `json:"dateStart"`
 	Maturity       string      `json:"maturity"`
-	Principal      int         `json:"principal"`
-	Interest       int         `json:"interest"`
+	Principal      float64     `json:"principal"`
+	Interest       float64     `json:"interest"`
 	Gives          int         `json:"gives"`
-	IbalPrin       int         `json:"ibalPrin"`
-	IbalInt        int         `json:"ibalInt"`
-	BalPrin        int         `json:"balPrin"`
-	BalInt         int         `json:"balInt"`
-	Amort          float32     `json:"amort"`
-	DuePrin        float32     `json:"duePrin"`
-	DueInt         int         `json:"dueInt"`
-	LoanBal        int         `json:"loanBal"`
-	SaveBal        float32     `json:"saveBal"`
-	WaiveInt       int         `json:"waiveInt"`
+	IbalPrin       float64     `json:"ibalPrin"`
+	IbalInt        float64     `json:"ibalInt"`
+	BalPrin        float64     `json:"balPrin"`
+	BalInt         float64     `json:"balInt"`
+	Amort          float64     `json:"amort"`
+	DuePrin        float64     `json:"duePrin"`
+	DueInt         float64     `json:"dueInt"`
+	LoanBal        float64     `json:"loanBal"`
+	SaveBal        float64     `json:"saveBal"`
+	WaiveInt       float64     `json:"waiveInt"`
 	UnpaidCtr      int         `json:"unpaidCtr"`
 	Writtenoff     int         `json:"writtenoff"`
 	Classification int         `json:"classification"`
 	ClassDesc      string      `json:"classDesc"`
 	Writeoff       int         `json:"writeoff"`
-	Pay            float32     `json:"pay"`
-	Withdraw       float32     `json:"withdraw"`
+	Pay            float64     `json:"pay"`
+	Withdraw       float64     `json:"withdraw"`
 	Type           int         `json:"type"`
 	Uuid           interface{} `json:"uuid"`
 }
@@ -110,4 +118,46 @@ func GenerateColCid(c *fiber.Ctx) error {
 	}
 	return c.JSON(a)
 
+}
+
+// Janus kumware godoc
+// @Summary     Loan info
+// @Description  Loan info
+// @Tags         Janus
+// @Accept       json
+// @Produce      json
+// @Param        user body Use true "Search"
+// @Success      200  {object} GenerateCol
+// @Failure      400  {object}  Errror
+// @Router       /janus/generateColshit/ [post]
+func GenerateColCidJanus(c *fiber.Ctx) error {
+
+	var user Use
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.SendString("fucking shit")
+	}
+
+	jsonReq, err := json.Marshal(user)
+
+	resp, err := http.Post("https://cmfstest.cardmri.com/CoreAccounts/API/generateColShtperCID", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
+	if err != nil {
+		log.Printf("Request Failed: %s", err)
+		return c.SendString("fucking shit")
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	// Log the request body
+	bodyString := string(body)
+	log.Print(bodyString)
+	// Unmarshal result
+	result := []GenerateCol{}
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		log.Printf("Reading body failed: %s", err)
+		return c.SendString("fucking shit")
+	}
+
+	return c.JSON(result)
 }

@@ -16,6 +16,46 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/janus/custSavingInfoJanus/": {
+            "post": {
+                "description": "Loan info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "Loan info",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Acc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.CustSavingInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
         "/janus/customerSavings/": {
             "post": {
                 "description": "Customer Savings List",
@@ -45,6 +85,86 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/route.CustSavingsListss"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/janus/generateColshit/": {
+            "post": {
+                "description": "Loan info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "Loan info",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Use"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.GenerateCol"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/janus/loanInfoJanus/": {
+            "post": {
+                "description": "Loan info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "Loan info",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.Acc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.LaonInfo"
                         }
                     },
                     "400": {
@@ -587,28 +707,65 @@ const docTemplate = `{
             }
         },
         "route.AmortList": {
-            "type": "object"
-        },
-        "route.Charges": {
             "type": "object",
             "properties": {
                 "acc": {
                     "type": "string"
                 },
-                "charges": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/route.Charges"
-                    }
+                "carVal": {
+                    "type": "number"
+                },
+                "dnum": {
+                    "type": "integer"
+                },
+                "dueDate": {
+                    "type": "string"
+                },
+                "endBal": {
+                    "type": "number"
+                },
+                "endInt": {
+                    "type": "number"
+                },
+                "endOth": {
+                    "type": "number"
+                },
+                "instFlag": {
+                    "type": "integer"
+                },
+                "instPd": {
+                    "type": "number"
+                },
+                "intr": {
+                    "type": "number"
+                },
+                "oth": {
+                    "type": "number"
+                },
+                "penPd": {
+                    "type": "number"
+                },
+                "penalty": {
+                    "type": "number"
+                },
+                "pledgeAmort": {
+                    "type": "number"
+                },
+                "prin": {
+                    "type": "number"
+                },
+                "servFee": {
+                    "type": "number"
+                },
+                "upInt": {
+                    "type": "number"
                 }
             }
         },
         "route.CustSavingInfo": {
             "type": "object",
             "properties": {
-                "acc": {
-                    "type": "string"
-                },
+                "acc": {},
                 "accDesc": {
                     "type": "string"
                 },
@@ -700,10 +857,10 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "balInt": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "balPrin": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "centerCode": {
                     "type": "integer"
@@ -730,7 +887,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "dueInt": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "duePrin": {
                     "type": "number"
@@ -739,19 +896,19 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "ibalInt": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "ibalPrin": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "iiid": {
                     "type": "integer"
                 },
                 "interest": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "loanBal": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "manCode": {
                     "type": "integer"
@@ -763,7 +920,7 @@ const docTemplate = `{
                     "type": "number"
                 },
                 "principal": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "saveBal": {
                     "type": "number"
@@ -791,7 +948,7 @@ const docTemplate = `{
                 },
                 "uuid": {},
                 "waiveInt": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "withdraw": {
                     "type": "number"
@@ -930,7 +1087,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "amortcondvalue": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "annumdiv": {
                     "type": "integer"
@@ -942,11 +1099,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "balance": {
-                    "type": "integer"
+                    "type": "number"
                 },
-                "charges": {
-                    "$ref": "#/definitions/route.Charges"
-                },
+                "charges": {},
                 "cid": {
                     "type": "integer"
                 },
@@ -957,7 +1112,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "conintrate": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "cycle": {
                     "type": "integer"
@@ -966,7 +1121,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "discounted": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "domaturity": {
                     "type": "string"
@@ -981,10 +1136,10 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "interest": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "intr": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "isLumpsum": {
                     "type": "integer"
@@ -994,22 +1149,22 @@ const docTemplate = `{
                 },
                 "loanID": {},
                 "netproceed": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "oth": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "others": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "penalty": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "prin": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "principal": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "proff": {
                     "type": "integer"
@@ -1022,7 +1177,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "waivedint": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "weekspaid": {
                     "type": "integer"
