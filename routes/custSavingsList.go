@@ -54,7 +54,8 @@ func CustSavings(c *fiber.Ctx) error {
 		log.Printf("Request Failed: %s", err)
 		return c.SendString("fucking shit")
 	}
-	defer resp.Body.Close()
+
+	defer resp.Body.Close() 
 	body, err := ioutil.ReadAll(resp.Body)
 	// Log the request body
 	bodyString := string(body)
