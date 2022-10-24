@@ -16,9 +16,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/janus/custSavingInfoJanus/": {
+        "/janus/OpenPaymentTransaction/": {
             "post": {
-                "description": "Loan info",
+                "description": "/CoreAccounts/API/OpenPaymentTransaction",
                 "consumes": [
                     "application/json"
                 ],
@@ -28,7 +28,47 @@ const docTemplate = `{
                 "tags": [
                     "Janus"
                 ],
-                "summary": "Loan info",
+                "summary": "/CoreAccounts/API/OpenPaymentTransaction",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.OpenPaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.OpenPaymentResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/janus/custSavingInfoJanus/": {
+            "post": {
+                "description": "/CoreAccounts/API/custSavingInfo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "/CoreAccounts/API/custSavingInfo",
                 "parameters": [
                     {
                         "description": "Search",
@@ -58,7 +98,7 @@ const docTemplate = `{
         },
         "/janus/customerSavings/": {
             "post": {
-                "description": "Customer Savings List",
+                "description": "/CoreAccounts/API/custSavingsList",
                 "consumes": [
                     "application/json"
                 ],
@@ -68,7 +108,7 @@ const docTemplate = `{
                 "tags": [
                     "Janus"
                 ],
-                "summary": "Customer Savings List",
+                "summary": "/CoreAccounts/API/custSavingsList",
                 "parameters": [
                     {
                         "description": "Search",
@@ -96,9 +136,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/janus/generateColshit/": {
+        "/janus/generateCol/": {
             "post": {
-                "description": "Loan info",
+                "description": "CoreAccounts/API/generateColShtperCID",
                 "consumes": [
                     "application/json"
                 ],
@@ -108,7 +148,7 @@ const docTemplate = `{
                 "tags": [
                     "Janus"
                 ],
-                "summary": "Loan info",
+                "summary": "CoreAccounts/API/generateColShtperCID",
                 "parameters": [
                     {
                         "description": "Search",
@@ -138,7 +178,7 @@ const docTemplate = `{
         },
         "/janus/loanInfoJanus/": {
             "post": {
-                "description": "Loan info",
+                "description": "/CoreAccounts/API/LoanInfo",
                 "consumes": [
                     "application/json"
                 ],
@@ -148,7 +188,7 @@ const docTemplate = `{
                 "tags": [
                     "Janus"
                 ],
-                "summary": "Loan info",
+                "summary": "/CoreAccounts/API/LoanInfo",
                 "parameters": [
                     {
                         "description": "Search",
@@ -178,7 +218,7 @@ const docTemplate = `{
         },
         "/janus/loanlist/": {
             "post": {
-                "description": "Loan List",
+                "description": "/CoreAccounts/API/searchLoanList",
                 "consumes": [
                     "application/json"
                 ],
@@ -188,7 +228,7 @@ const docTemplate = `{
                 "tags": [
                     "Janus"
                 ],
-                "summary": "Loan List",
+                "summary": "/CoreAccounts/API/searchLoanList",
                 "parameters": [
                     {
                         "description": "Search",
@@ -216,9 +256,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/janus/searchCID/": {
+        "/janus/multiplePayment/": {
             "post": {
-                "description": "SearchCustomerCID",
+                "description": "/CoreMFS/API/multiplePayment",
                 "consumes": [
                     "application/json"
                 ],
@@ -228,7 +268,47 @@ const docTemplate = `{
                 "tags": [
                     "Janus"
                 ],
-                "summary": "SearchCustomerCID",
+                "summary": "/CoreMFS/API/multiplePayment",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/route.MultiplePaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/route.MultiplePaymentResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/route.Errror"
+                        }
+                    }
+                }
+            }
+        },
+        "/janus/searchCID/": {
+            "post": {
+                "description": "CoreAccounts/API/mobile/api/v1/SearchCustomerCID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Janus"
+                ],
+                "summary": "CoreAccounts/API/mobile/api/v1/SearchCustomerCID",
                 "parameters": [
                     {
                         "description": "SearchbyCid",
@@ -245,188 +325,6 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/route.JsonStruct"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/proj1/add/": {
-            "post": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Adding"
-                ],
-                "summary": "Add users",
-                "parameters": [
-                    {
-                        "description": "Add user",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/proj1/delete/{id}": {
-            "delete": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Deleting"
-                ],
-                "summary": "Delete user",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/proj1/get/{id}": {
-            "get": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Getting"
-                ],
-                "summary": "show 1 user",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/proj1/gets/": {
-            "get": {
-                "description": "get string by ID",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Getting"
-                ],
-                "summary": "Show all users",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/proj1/update/": {
-            "put": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Updating"
-                ],
-                "summary": "Add users",
-                "parameters": [
-                    {
-                        "description": "Update User",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
                         }
                     },
                     "400": {
@@ -680,24 +578,6 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "model.User": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "description": "User ID",
-                    "type": "integer"
-                },
-                "lastname": {
-                    "type": "string"
-                },
-                "middlename": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
         "route.Acc": {
             "type": "object",
             "properties": {
@@ -821,6 +701,29 @@ const docTemplate = `{
                 },
                 "statusDesc": {
                     "type": "string"
+                }
+            }
+        },
+        "route.Details": {
+            "type": "object",
+            "properties": {
+                "coreReference": {
+                    "type": "string"
+                },
+                "customerName": {
+                    "type": "string"
+                },
+                "customerNumber": {
+                    "type": "string"
+                },
+                "paidDate": {},
+                "referenceNumber": {
+                    "type": "string"
+                },
+                "sourceAccountNumber": {},
+                "sourceId": {},
+                "transactionAmount": {
+                    "type": "number"
                 }
             }
         },
@@ -980,9 +883,7 @@ const docTemplate = `{
                 "centerCode": {
                     "type": "integer"
                 },
-                "centerName": {
-                    "type": "string"
-                },
+                "centerName": {},
                 "cid": {
                     "type": "integer"
                 },
@@ -1041,9 +942,7 @@ const docTemplate = `{
                 "remarks": {
                     "type": "string"
                 },
-                "searchName": {
-                    "type": "string"
-                },
+                "searchName": {},
                 "sex": {
                     "type": "integer"
                 },
@@ -1059,9 +958,7 @@ const docTemplate = `{
                 "unitCode": {
                     "type": "integer"
                 },
-                "unitName": {
-                    "type": "string"
-                }
+                "unitName": {}
             }
         },
         "route.LaonInfo": {
@@ -1216,6 +1113,93 @@ const docTemplate = `{
                 },
                 "term": {
                     "type": "integer"
+                }
+            }
+        },
+        "route.MultiplePaymentRequest": {
+            "type": "object",
+            "properties": {
+                "orNumber": {
+                    "type": "integer"
+                },
+                "particulars": {
+                    "type": "string"
+                },
+                "payment": {},
+                "prNumber": {
+                    "type": "string"
+                },
+                "remitterCID": {
+                    "type": "string"
+                },
+                "sourceId": {
+                    "type": "integer"
+                },
+                "totalCollection": {
+                    "type": "integer"
+                },
+                "trndate": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.MultiplePaymentResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "retcode": {
+                    "type": "integer"
+                }
+            }
+        },
+        "route.OpenPaymentRequest": {
+            "type": "object",
+            "properties": {
+                "accountNumber": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "particulars": {
+                    "type": "string"
+                },
+                "sourceSaveAcc": {
+                    "type": "string"
+                },
+                "transFee": {
+                    "type": "integer"
+                },
+                "transFeeParticulars": {
+                    "type": "string"
+                },
+                "trnReference": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "route.OpenPaymentResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/route.Details"
+                    }
+                },
+                "message": {
+                    "type": "string"
                 }
             }
         },

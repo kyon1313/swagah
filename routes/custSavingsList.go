@@ -31,8 +31,8 @@ Janus
 */
 
 // Janus kumware godoc
-// @Summary     Customer Savings List
-// @Description  Customer Savings List
+// @Summary     /CoreAccounts/API/custSavingsList
+// @Description  /CoreAccounts/API/custSavingsList
 // @Tags         Janus
 // @Accept       json
 // @Produce      json
@@ -44,7 +44,7 @@ func CustSavings(c *fiber.Ctx) error {
 	var user Use
 
 	if err := c.BodyParser(&user); err != nil {
-		return c.SendString("internal shit")
+		return c.SendString("internal server error")
 	}
 
 	jsonReq, err := json.Marshal(user.Cid)
@@ -52,10 +52,10 @@ func CustSavings(c *fiber.Ctx) error {
 	resp, err := http.Post("https://cmfstest.cardmri.com/CoreAccounts/API/custSavingsList", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
 	if err != nil {
 		log.Printf("Request Failed: %s", err)
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 
-	defer resp.Body.Close() 
+	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	// Log the request body
 	bodyString := string(body)
@@ -67,7 +67,7 @@ func CustSavings(c *fiber.Ctx) error {
 
 	if err != nil {
 		log.Printf("Reading body failed: %s", err)
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 	return c.JSON(result)
 
@@ -87,7 +87,7 @@ func CustSavingsHard(c *fiber.Ctx) error {
 	var use Use
 	fmt.Println(use)
 	if err := c.BodyParser(&use); err != nil {
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 	cust := []CustSavingsListss{
 		{

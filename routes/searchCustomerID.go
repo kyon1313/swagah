@@ -15,42 +15,42 @@ import (
 )
 
 type JsonStruct struct {
-	Cid               int    `json:"cid"`
-	Lastname          string `json:"lastname"`
-	FirstName         string `json:"firstname"`
-	MiddleName        string `json:"middlename"`
-	MaidenFName       string `json:"maidenFname"`
-	MaidenLName       string `json:"maidenLName"`
-	MaidenMName       string `json:"maidenMName"`
-	DoBirth           string `json:"doBirth"`
-	BirthPlace        string `json:"birthPlace"`
-	Sex               int    `json:"sex"`
-	CivilStatus       int    `json:"civilStatus"`
-	Title             int    `json:"title"`
-	Status            int    `json:"status"`
-	Classification    int    `json:"classification"`
-	SubClassification int    `json:"subClassification"`
-	Business          int    `json:"business"`
-	DEntry            string `json:"doEntry"`
-	DoRecognized      string `json:"doRecognized"`
-	DoResigned        string `json:"doResigned"`
-	BrCode            int    `json:"brCode"`
-	UnitCode          int    `json:"unitCode"`
-	CenterCode        int    `json:"centerCode"`
-	Dosri             int    `json:"dosri"`
-	Reffered          string `json:"reffered"`
-	Remarks           string `json:"remarks"`
-	AccountNumber     string `json:"accountNumber"`
-	SearchName        string `json:"searchName"`
+	Cid               int         `json:"cid"`
+	Lastname          string      `json:"lastname"`
+	FirstName         string      `json:"firstname"`
+	MiddleName        string      `json:"middlename"`
+	MaidenFName       string      `json:"maidenFname"`
+	MaidenLName       string      `json:"maidenLName"`
+	MaidenMName       string      `json:"maidenMName"`
+	DoBirth           string      `json:"doBirth"`
+	BirthPlace        string      `json:"birthPlace"`
+	Sex               int         `json:"sex"`
+	CivilStatus       int         `json:"civilStatus"`
+	Title             int         `json:"title"`
+	Status            int         `json:"status"`
+	Classification    int         `json:"classification"`
+	SubClassification int         `json:"subClassification"`
+	Business          int         `json:"business"`
+	DEntry            string      `json:"doEntry"`
+	DoRecognized      string      `json:"doRecognized"`
+	DoResigned        string      `json:"doResigned"`
+	BrCode            int         `json:"brCode"`
+	UnitCode          int         `json:"unitCode"`
+	CenterCode        int         `json:"centerCode"`
+	Dosri             int         `json:"dosri"`
+	Reffered          string      `json:"reffered"`
+	Remarks           string      `json:"remarks"`
+	AccountNumber     string      `json:"accountNumber"`
+	SearchName        interface{} `json:"searchName"`
 
 	Address interface{} `json:"address"`
 	Contact interface{} `json:"contact"`
 
-	MemberMaidenFName string `json:"memberMaidenFName"`
-	MemberMaidenLName string `json:"memberMaidenLName"`
-	MemberMaidenMName string `json:"memberMaidenMName"`
-	UnitName          string `json:"unitName"`
-	CenterName        string `json:"centerName"`
+	MemberMaidenFName string      `json:"memberMaidenFName"`
+	MemberMaidenLName string      `json:"memberMaidenLName"`
+	MemberMaidenMName string      `json:"memberMaidenMName"`
+	UnitName          interface{} `json:"unitName"`
+	CenterName        interface{} `json:"centerName"`
 }
 
 type Addres struct {
@@ -315,8 +315,8 @@ func GEttingMtfks(c *fiber.Ctx) error {
 //--------------consuming from another api
 
 // Search  godoc
-// @Summary     SearchCustomerCID
-// @Description  SearchCustomerCID
+// @Summary     CoreAccounts/API/mobile/api/v1/SearchCustomerCID
+// @Description  CoreAccounts/API/mobile/api/v1/SearchCustomerCID
 // @Tags         Janus
 // @Accept       json
 // @Produce      json
@@ -328,7 +328,7 @@ func Consuming(c *fiber.Ctx) error {
 	var user JsonStruct
 
 	if err := c.BodyParser(&user); err != nil {
-		return c.SendString("fucking shit")
+		return c.SendString("internal server error")
 	}
 
 	jsonReq, err := json.Marshal(user.Cid)
@@ -336,7 +336,7 @@ func Consuming(c *fiber.Ctx) error {
 	resp, err := http.Post("https://cmfstest.cardmri.com/CoreAccounts/API/mobile/api/v1/SearchCustomerCID", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
 	if err != nil {
 		log.Printf("Request Failed: %s", err)
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 	defer resp.Body.Close()
 
@@ -349,7 +349,7 @@ func Consuming(c *fiber.Ctx) error {
 	err = json.Unmarshal(body, &result)
 	if err != nil {
 		log.Printf("Reading body failed: %s", err)
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 
 	return c.JSON(result)
@@ -372,7 +372,7 @@ func Tryit(c *fiber.Ctx) error {
 	var p Products
 
 	if err := c.BodyParser(&p); err != nil {
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 
 	return c.JSON(p)

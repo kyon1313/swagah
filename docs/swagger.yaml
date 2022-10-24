@@ -1,17 +1,5 @@
 basePath: /
 definitions:
-  model.User:
-    properties:
-      id:
-        description: User ID
-        type: integer
-      lastname:
-        type: string
-      middlename:
-        type: string
-      name:
-        type: string
-    type: object
   route.Acc:
     properties:
       acc:
@@ -94,6 +82,22 @@ definitions:
         type: integer
       statusDesc:
         type: string
+    type: object
+  route.Details:
+    properties:
+      coreReference:
+        type: string
+      customerName:
+        type: string
+      customerNumber:
+        type: string
+      paidDate: {}
+      referenceNumber:
+        type: string
+      sourceAccountNumber: {}
+      sourceId: {}
+      transactionAmount:
+        type: number
     type: object
   route.Errror:
     properties:
@@ -199,8 +203,7 @@ definitions:
         type: integer
       centerCode:
         type: integer
-      centerName:
-        type: string
+      centerName: {}
       cid:
         type: integer
       civilStatus:
@@ -240,8 +243,7 @@ definitions:
         type: string
       remarks:
         type: string
-      searchName:
-        type: string
+      searchName: {}
       sex:
         type: integer
       status:
@@ -252,8 +254,7 @@ definitions:
         type: integer
       unitCode:
         type: integer
-      unitName:
-        type: string
+      unitName: {}
     type: object
   route.LaonInfo:
     properties:
@@ -359,6 +360,63 @@ definitions:
       term:
         type: integer
     type: object
+  route.MultiplePaymentRequest:
+    properties:
+      orNumber:
+        type: integer
+      particulars:
+        type: string
+      payment: {}
+      prNumber:
+        type: string
+      remitterCID:
+        type: string
+      sourceId:
+        type: integer
+      totalCollection:
+        type: integer
+      trndate:
+        type: string
+      username:
+        type: string
+    type: object
+  route.MultiplePaymentResponse:
+    properties:
+      message:
+        type: string
+      retcode:
+        type: integer
+    type: object
+  route.OpenPaymentRequest:
+    properties:
+      accountNumber:
+        type: string
+      amount:
+        type: integer
+      particulars:
+        type: string
+      sourceSaveAcc:
+        type: string
+      transFee:
+        type: integer
+      transFeeParticulars:
+        type: string
+      trnReference:
+        type: string
+      username:
+        type: string
+    type: object
+  route.OpenPaymentResponse:
+    properties:
+      code:
+        type: string
+      details:
+        items:
+          $ref: '#/definitions/route.Details'
+        type: array
+      message:
+        type: string
+    type: object
   route.Use:
     properties:
       cid:
@@ -372,11 +430,37 @@ info:
   title: My Fucking Swaggah Jagahh.
   version: "1.0"
 paths:
+  /janus/OpenPaymentTransaction/:
+    post:
+      consumes:
+      - application/json
+      description: /CoreAccounts/API/OpenPaymentTransaction
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.OpenPaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.OpenPaymentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: /CoreAccounts/API/OpenPaymentTransaction
+      tags:
+      - Janus
   /janus/custSavingInfoJanus/:
     post:
       consumes:
       - application/json
-      description: Loan info
+      description: /CoreAccounts/API/custSavingInfo
       parameters:
       - description: Search
         in: body
@@ -395,14 +479,14 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/route.Errror'
-      summary: Loan info
+      summary: /CoreAccounts/API/custSavingInfo
       tags:
       - Janus
   /janus/customerSavings/:
     post:
       consumes:
       - application/json
-      description: Customer Savings List
+      description: /CoreAccounts/API/custSavingsList
       parameters:
       - description: Search
         in: body
@@ -421,14 +505,14 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/route.Errror'
-      summary: Customer Savings List
+      summary: /CoreAccounts/API/custSavingsList
       tags:
       - Janus
-  /janus/generateColshit/:
+  /janus/generateCol/:
     post:
       consumes:
       - application/json
-      description: Loan info
+      description: CoreAccounts/API/generateColShtperCID
       parameters:
       - description: Search
         in: body
@@ -447,14 +531,14 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/route.Errror'
-      summary: Loan info
+      summary: CoreAccounts/API/generateColShtperCID
       tags:
       - Janus
   /janus/loanInfoJanus/:
     post:
       consumes:
       - application/json
-      description: Loan info
+      description: /CoreAccounts/API/LoanInfo
       parameters:
       - description: Search
         in: body
@@ -473,14 +557,14 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/route.Errror'
-      summary: Loan info
+      summary: /CoreAccounts/API/LoanInfo
       tags:
       - Janus
   /janus/loanlist/:
     post:
       consumes:
       - application/json
-      description: Loan List
+      description: /CoreAccounts/API/searchLoanList
       parameters:
       - description: Search
         in: body
@@ -499,14 +583,40 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/route.Errror'
-      summary: Loan List
+      summary: /CoreAccounts/API/searchLoanList
+      tags:
+      - Janus
+  /janus/multiplePayment/:
+    post:
+      consumes:
+      - application/json
+      description: /CoreMFS/API/multiplePayment
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/route.MultiplePaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/route.MultiplePaymentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/route.Errror'
+      summary: /CoreMFS/API/multiplePayment
       tags:
       - Janus
   /janus/searchCID/:
     post:
       consumes:
       - application/json
-      description: SearchCustomerCID
+      description: CoreAccounts/API/mobile/api/v1/SearchCustomerCID
       parameters:
       - description: SearchbyCid
         in: body
@@ -525,128 +635,9 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/route.Errror'
-      summary: SearchCustomerCID
+      summary: CoreAccounts/API/mobile/api/v1/SearchCustomerCID
       tags:
       - Janus
-  /proj1/add/:
-    post:
-      consumes:
-      - application/json
-      description: get string by ID
-      parameters:
-      - description: Add user
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/model.User'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.User'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Add users
-      tags:
-      - Adding
-  /proj1/delete/{id}:
-    delete:
-      consumes:
-      - application/json
-      description: get string by ID
-      parameters:
-      - description: id
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.User'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Delete user
-      tags:
-      - Deleting
-  /proj1/get/{id}:
-    get:
-      consumes:
-      - application/json
-      description: get string by ID
-      parameters:
-      - description: id
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.User'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: show 1 user
-      tags:
-      - Getting
-  /proj1/gets/:
-    get:
-      description: get string by ID
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.User'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Show all users
-      tags:
-      - Getting
-  /proj1/update/:
-    put:
-      consumes:
-      - application/json
-      description: get string by ID
-      parameters:
-      - description: Update User
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/model.User'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.User'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Add users
-      tags:
-      - Updating
   /swag/custSavingsList:
     post:
       consumes:

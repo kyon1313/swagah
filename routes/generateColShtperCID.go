@@ -68,7 +68,7 @@ type GenerateCol struct {
 func GenerateColCid(c *fiber.Ctx) error {
 	var use Use
 	if err := c.BodyParser(&use); err != nil {
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 
 	a := []GenerateCol{
@@ -121,21 +121,21 @@ func GenerateColCid(c *fiber.Ctx) error {
 }
 
 // Janus kumware godoc
-// @Summary     Loan info
-// @Description  Loan info
+// @Summary     CoreAccounts/API/generateColShtperCID
+// @Description  CoreAccounts/API/generateColShtperCID
 // @Tags         Janus
 // @Accept       json
 // @Produce      json
 // @Param        user body Use true "Search"
 // @Success      200  {object} GenerateCol
 // @Failure      400  {object}  Errror
-// @Router       /janus/generateColshit/ [post]
+// @Router       /janus/generateCol/ [post]
 func GenerateColCidJanus(c *fiber.Ctx) error {
 
 	var user Use
 
 	if err := c.BodyParser(&user); err != nil {
-		return c.SendString("fucking shit")
+		return c.SendString("internal server error")
 	}
 
 	jsonReq, err := json.Marshal(user)
@@ -143,7 +143,7 @@ func GenerateColCidJanus(c *fiber.Ctx) error {
 	resp, err := http.Post("https://cmfstest.cardmri.com/CoreAccounts/API/generateColShtperCID", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
 	if err != nil {
 		log.Printf("Request Failed: %s", err)
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 	defer resp.Body.Close()
 
@@ -156,7 +156,7 @@ func GenerateColCidJanus(c *fiber.Ctx) error {
 	err = json.Unmarshal(body, &result)
 	if err != nil {
 		log.Printf("Reading body failed: %s", err)
-		return c.SendString("fucking shit")
+		return c.SendString("Request Failed")
 	}
 
 	return c.JSON(result)
