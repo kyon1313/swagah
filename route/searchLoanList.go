@@ -2,12 +2,10 @@ package route
 
 import (
 	"bytes"
-	"fmt"
 
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -75,67 +73,4 @@ func SearchLoanList(c *fiber.Ctx) error {
 
 	return c.JSON(result)
 
-}
-
-// Janus godoc
-// @Summary    LoanList
-// @Description  Loanlist
-// @Tags         Janus Hard coded data
-// @Accept       json
-// @Produce      json
-// @Param        user body Use true "Search"
-// @Success      200  {object} LoanList
-// @Failure      400  {object}  Errror
-// @Router       /swag/loanlisthard [post]
-func LoanListHard(c *fiber.Ctx) error {
-	var use Use
-	fmt.Println(use)
-
-	ll := []LoanList{
-		{
-			Acc:         "geromme acc",
-			Status:      "sample",
-			DataRelease: "sample",
-			AcctType:    "sample",
-			Principal:   0,
-			Interest:    0,
-			Oth:         0,
-			Balance:     0.0,
-			Term:        0,
-			PaidTerm:    0,
-		},
-	}
-	l2 := []LoanList{
-		{
-			Acc:         "dan acc",
-			Status:      "sample2",
-			DataRelease: "sample2",
-			AcctType:    "sample2",
-			Principal:   0,
-			Interest:    0,
-			Oth:         0,
-			Balance:     0.0,
-			Term:        0,
-			PaidTerm:    0,
-		},
-	}
-	l3 := []LoanList{
-		{
-			Acc:         "mond acc",
-			Status:      "sample3",
-			DataRelease: "sample3",
-			AcctType:    "sample3",
-			Principal:   0,
-			Interest:    0,
-			Oth:         0,
-			Balance:     0.0,
-			Term:        0,
-			PaidTerm:    0,
-		},
-	}
-
-	r := [][]LoanList{ll, l2, l3}
-	random := rand.Intn(len(r))
-
-	return c.JSON(r[random])
 }

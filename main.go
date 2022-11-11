@@ -3,7 +3,8 @@ package main
 import (
 	"log"
 	"sample/database"
-	route "sample/routes"
+	"sample/route"
+	"sample/routes"
 
 	_ "sample/docs"
 
@@ -44,16 +45,26 @@ func Routes(app *fiber.App) {
 	janus.Post("/generateCol", route.GenerateColCidJanus)
 	janus.Post("/OpenPaymentTransaction", route.OpenPayment)
 	janus.Post("/multiplePayment", route.MultiplePayment)
+
 	/*
-		swagger hard coded data
+		Swag 2nd batch
 	*/
-	swag := app.Group("/swag")
-	swag.Post("/search/", route.FuckignShit)
-	swag.Post("/loanlisthard", route.LoanListHard)
-	swag.Post("/custSavingsList", route.CustSavingsHard)
-	swag.Post("/custSavingsinfo", route.CustSavingsInfo)
-	swag.Post("/loanInfo", route.LoansInfo)
-	swag.Post("/generateCol", route.GenerateColCid)
+
+	app.Get("/ServerTimestamp", routes.GetServerTimestamp)                                 //done
+	app.Get("/ServerDate", routes.GetServerDate)                                           //done
+	app.Get("/webtoolParams", routes.GetWbParams)                                          //done
+	app.Post("/SendBugReport", routes.BugReporting)                                        //done
+	app.Post("/GetBugReports", routes.GetBugReports)                                       //done
+	app.Get("/getAllFees", routes.GetAllFees)                                              //done
+	app.Post("/getSpecifiedFee", routes.GetSpecifiedFee)                                   //done
+	app.Delete("/deleteSavedAccount", routes.DeleteSavedAccount)                           //done
+	app.Post("/updateSavedAccount", routes.UpdateSavedAccount)                             //done
+	app.Post("/getSavedAccountbyCid", routes.GetSavedAccountbyCid)                         //done
+	app.Post("/getSavedAccountbyCidAndtargetCid", routes.GetSavedAccountbyCidAndtargetCid) //done
+	app.Post("/updateBugreport", routes.UpdateBugreport)                                   //done
+	app.Get("/getAllAtm", routes.GetAllAtm)                                                //done
+	app.Post("/getInstiAtm", routes.GetInstiAtm)                                           //done
+
 }
 
 func unique(s []int) []int {

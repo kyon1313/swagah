@@ -1,7 +1,7 @@
 package database
 
 import (
-	"sample/model"
+	"fmt"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -10,13 +10,13 @@ import (
 var DB *gorm.DB
 var err error
 
-var DNS = "host=localhost user=postgres password=sparkman13 dbname=test_db port=5432 sslmode=disable"
-
 func Migration() {
-	DB, err = gorm.Open(postgres.Open(DNS), &gorm.Config{})
-	if err != nil {
-		panic("cant connect to the db")
-	}
 
-	DB.AutoMigrate(&model.Otpcode{})
+	DSN := ("host=34.87.184.130	user=janus_user password=j@Nu5.6@t3_p@55.2O22@ dbname=mfs port=5432 sslmode=disable")
+	DB, err = gorm.Open(postgres.Open(DSN), &gorm.Config{})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("connected to the databse")
+
 }

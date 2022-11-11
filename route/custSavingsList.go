@@ -3,10 +3,8 @@ package route
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -70,64 +68,5 @@ func CustSavings(c *fiber.Ctx) error {
 		return c.SendString("Request Failed")
 	}
 	return c.JSON(result)
-
-}
-
-// Janus godoc
-// @Summary    Customer Savings List
-// @Description  Customer Savings List
-// @Tags         Janus Hard coded data
-// @Accept       json
-// @Produce      json
-// @Param        user body Use true "Search"
-// @Success      200  {object} CustSavingsListss
-// @Failure      400  {object}  Errror
-// @Router       /swag/custSavingsList [post]
-func CustSavingsHard(c *fiber.Ctx) error {
-	var use Use
-	fmt.Println(use)
-	if err := c.BodyParser(&use); err != nil {
-		return c.SendString("Request Failed")
-	}
-	cust := []CustSavingsListss{
-		{
-			Cid:        use.Cid,
-			Acc:        "geromme acc",
-			Acctype:    0,
-			AccDesc:    "sample",
-			Dopen:      "sample",
-			StatusDesc: "sample",
-			Balance:    0.0,
-			Status:     0,
-		},
-	}
-	cust2 := []CustSavingsListss{
-		{
-			Cid:        use.Cid,
-			Acc:        "dan acc",
-			Acctype:    0,
-			AccDesc:    "sample",
-			Dopen:      "sample",
-			StatusDesc: "sample",
-			Balance:    0.0,
-			Status:     0,
-		},
-	}
-	cust3 := []CustSavingsListss{
-		{
-			Cid:        use.Cid,
-			Acc:        "mond acc",
-			Acctype:    0,
-			AccDesc:    "sample",
-			Dopen:      "sample",
-			StatusDesc: "sample",
-			Balance:    0.0,
-			Status:     0,
-		},
-	}
-	customers := [][]CustSavingsListss{cust, cust2, cust3}
-	random := rand.Intn(len(customers))
-	fmt.Print()
-	return c.JSON(customers[random])
 
 }

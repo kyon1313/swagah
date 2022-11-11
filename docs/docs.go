@@ -16,6 +16,442 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/": {
+            "post": {
+                "description": "GetInstiFees Not done",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetFees"
+                ],
+                "summary": "GetInstiFees Not done",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.FeeStructureRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.FeeStructure"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/GetBugReports": {
+            "post": {
+                "description": "GetBugReports",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "BugReport"
+                ],
+                "summary": "GetBugReports",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GetReports"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.BugReport"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/SendBugReport": {
+            "post": {
+                "description": "Send But Report",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "BugReport"
+                ],
+                "summary": "Send Bug Report",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SendBugReport"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.BugReport"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/ServerDate": {
+            "get": {
+                "description": "Get Server Date",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ServerTime"
+                ],
+                "summary": "Get Server Date",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/ServerTimestamp": {
+            "get": {
+                "description": "Get Server Timestamp",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ServerTime"
+                ],
+                "summary": "Get Server Timestamp",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteSavedAccount": {
+            "delete": {
+                "description": "DeleteSavedAccount",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SavedAccount"
+                ],
+                "summary": "DeleteSavedAccount",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.DeletePreferredAccount"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/getAllAtm": {
+            "get": {
+                "description": "Get Atm",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetAtm"
+                ],
+                "summary": "Get Atm",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.GetAtm"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/getAllFees": {
+            "get": {
+                "description": "Get All Fees",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetFees"
+                ],
+                "summary": "Get All Fees",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.FeeStructure"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/getInstiAtm": {
+            "post": {
+                "description": "Get Insti Atm",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetAtm"
+                ],
+                "summary": "Get Insti Atm",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GetAtmByInsti"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.GetAtm"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/getSavedAccountbyCid": {
+            "post": {
+                "description": "GetSavedAccountbyCid",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SavedAccount"
+                ],
+                "summary": "GetSavedAccountbyCid",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GetSaveAcc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PreferredFT"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/getSavedAccountbyCidAndtargetCid": {
+            "post": {
+                "description": "GetSavedAccount by Cid and target Cid",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SavedAccount"
+                ],
+                "summary": "GetSavedAccount by Cid and target Cid",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GetSaveAccAndTCid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PreferredFT"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/getSpecifiedFee": {
+            "post": {
+                "description": "GetSpecifiedFee",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetFees"
+                ],
+                "summary": "GetSpecifiedFee",
+                "parameters": [
+                    {
+                        "description": "Search",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.FeeStructureRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.FeeStructure"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/janus/OpenPaymentTransaction/": {
             "post": {
                 "description": "/CoreAccounts/API/OpenPaymentTransaction",
@@ -336,9 +772,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/swag/custSavingsList": {
+        "/updateBugreport": {
             "post": {
-                "description": "Customer Savings List",
+                "description": "Update Bug Report",
                 "consumes": [
                     "application/json"
                 ],
@@ -346,9 +782,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Janus Hard coded data"
+                    "BugReport"
                 ],
-                "summary": "Customer Savings List",
+                "summary": "Update Bug Report",
                 "parameters": [
                     {
                         "description": "Search",
@@ -356,7 +792,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/route.Use"
+                            "$ref": "#/definitions/model.UpdateBugreports"
                         }
                     }
                 ],
@@ -364,21 +800,21 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/route.CustSavingsListss"
+                            "$ref": "#/definitions/model.BugReportResponses"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/route.Errror"
+                            "$ref": "#/definitions/model.Error"
                         }
                     }
                 }
             }
         },
-        "/swag/custSavingsinfo": {
+        "/updateSavedAccount": {
             "post": {
-                "description": "Customer Savings Info",
+                "description": "Fields are optional except cid and target cid",
                 "consumes": [
                     "application/json"
                 ],
@@ -386,9 +822,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Janus Hard coded data"
+                    "SavedAccount"
                 ],
-                "summary": "Customer Savings Info",
+                "summary": "UpdateSavedAccount",
                 "parameters": [
                     {
                         "description": "Search",
@@ -396,7 +832,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/route.Acc"
+                            "$ref": "#/definitions/model.PreferredFT"
                         }
                     }
                 ],
@@ -404,21 +840,21 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/route.CustSavingInfo"
+                            "$ref": "#/definitions/model.PreferredFT"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/route.Errror"
+                            "$ref": "#/definitions/model.Error"
                         }
                     }
                 }
             }
         },
-        "/swag/generateCol": {
-            "post": {
-                "description": "Generate Col",
+        "/webtoolParams": {
+            "get": {
+                "description": "Get WebTool Parameters",
                 "consumes": [
                     "application/json"
                 ],
@@ -426,151 +862,20 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Janus Hard coded data"
+                    "GetWebToolParams"
                 ],
-                "summary": "Generate  Col",
-                "parameters": [
-                    {
-                        "description": "Search",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/route.Use"
-                        }
-                    }
-                ],
+                "summary": "Get WebTool Parameters",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/route.GenerateCol"
+                            "$ref": "#/definitions/model.GetparamWebtools"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/swag/loanInfo": {
-            "post": {
-                "description": "Loan Info",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Janus Hard coded data"
-                ],
-                "summary": "Loan Info",
-                "parameters": [
-                    {
-                        "description": "Search",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/route.Acc"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/route.LaonInfo"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/swag/loanlisthard": {
-            "post": {
-                "description": "Loanlist",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Janus Hard coded data"
-                ],
-                "summary": "LoanList",
-                "parameters": [
-                    {
-                        "description": "Search",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/route.Use"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/route.LoanList"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
-                        }
-                    }
-                }
-            }
-        },
-        "/swag/search/": {
-            "post": {
-                "description": "SearchCustomerCID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Janus Hard coded data"
-                ],
-                "summary": "SearchCustomerCID",
-                "parameters": [
-                    {
-                        "description": "Search",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/route.Use"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/route.JsonStruct"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/route.Errror"
+                            "$ref": "#/definitions/model.Error"
                         }
                     }
                 }
@@ -578,6 +883,313 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "model.BugReport": {
+            "type": "object",
+            "properties": {
+                "application_code": {
+                    "type": "integer"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "insti_code": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.BugReportResponses": {
+            "type": "object",
+            "properties": {
+                "application_code": {
+                    "type": "integer"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "insti_code": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.DeletePreferredAccount": {
+            "type": "object",
+            "properties": {
+                "cid": {
+                    "type": "string"
+                },
+                "target_cid": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Error": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "retcode": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.FeeStructure": {
+            "type": "object",
+            "properties": {
+                "agent_income": {
+                    "type": "number"
+                },
+                "agent_target_income": {
+                    "type": "number"
+                },
+                "bancnet_income": {
+                    "type": "number"
+                },
+                "bank_income": {
+                    "type": "number"
+                },
+                "bank_income_flag": {
+                    "type": "boolean"
+                },
+                "client_type": {
+                    "type": "string"
+                },
+                "cmit_fee": {
+                    "type": "number"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "created_date": {
+                    "type": "string"
+                },
+                "end_range": {
+                    "type": "integer"
+                },
+                "fds_fee": {
+                    "type": "number"
+                },
+                "fee_id": {
+                    "type": "integer"
+                },
+                "last_updated_by": {
+                    "type": "integer"
+                },
+                "last_updated_date": {
+                    "type": "string"
+                },
+                "start_range": {
+                    "type": "integer"
+                },
+                "telco_fee": {
+                    "type": "number"
+                },
+                "total_charge": {
+                    "type": "number"
+                },
+                "trans_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.FeeStructureRequest": {
+            "type": "object",
+            "properties": {
+                "fee_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.GetAtm": {
+            "type": "object",
+            "properties": {
+                "atm_address": {
+                    "type": "string"
+                },
+                "atm_city": {
+                    "type": "string"
+                },
+                "atm_description": {
+                    "type": "string"
+                },
+                "atm_id": {
+                    "type": "integer"
+                },
+                "atm_latitude": {
+                    "type": "number"
+                },
+                "atm_longitude": {
+                    "type": "number"
+                },
+                "atm_type": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "created_date": {
+                    "type": "string"
+                },
+                "inst_code": {
+                    "type": "string"
+                },
+                "last_updated_by": {
+                    "type": "integer"
+                },
+                "last_updated_date": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.GetAtmByInsti": {
+            "type": "object",
+            "properties": {
+                "inst_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.GetReports": {
+            "type": "object",
+            "properties": {
+                "cid": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.GetSaveAcc": {
+            "type": "object",
+            "properties": {
+                "cid": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.GetSaveAccAndTCid": {
+            "type": "object",
+            "properties": {
+                "cid": {
+                    "type": "string"
+                },
+                "target_cid": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.GetparamWebtools": {
+            "type": "object",
+            "properties": {
+                "app_type": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "created_date": {},
+                "last_updated_by": {},
+                "last_updated_date": {},
+                "param_desc": {
+                    "type": "string"
+                },
+                "param_id": {
+                    "type": "integer"
+                },
+                "param_name": {
+                    "type": "string"
+                },
+                "param_status": {
+                    "type": "string"
+                },
+                "param_value": {
+                    "type": "string"
+                },
+                "process_id": {},
+                "value_lookup": {},
+                "value_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.PreferredFT": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "account_type": {
+                    "type": "string"
+                },
+                "cid": {
+                    "type": "string"
+                },
+                "date_added": {
+                    "type": "string"
+                },
+                "insti": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "target_cid": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.SendBugReport": {
+            "type": "object",
+            "properties": {
+                "application_code": {
+                    "type": "integer"
+                },
+                "cid": {
+                    "type": "integer"
+                },
+                "details": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "insti_code": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.UpdateBugreports": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
         "route.Acc": {
             "type": "object",
             "properties": {

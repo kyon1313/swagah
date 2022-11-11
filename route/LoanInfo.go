@@ -77,69 +77,6 @@ type Charges struct {
 	Charge []Charges   `json:"charges"`
 }
 
-// Janus godoc
-// @Summary    Loan Info
-// @Description   Loan Info
-// @Tags         Janus Hard coded data
-// @Accept       json
-// @Produce      json
-// @Param        user body Acc true "Search"
-// @Success      200  {object} LaonInfo
-// @Failure      400  {object}  Errror
-// @Router       /swag/loanInfo [post]
-func LoansInfo(c *fiber.Ctx) error {
-	var acc Acc
-	if err := c.BodyParser(&acc); err != nil {
-		return c.SendString("server error")
-	}
-
-	a := []LaonInfo{
-		{
-			Cid:                 0,
-			Acc:                 acc.Acc,
-			AppType:             0,
-			AcctType:            0,
-			AccDesc:             "sample",
-			Dopen:               "sample",
-			Domaturity:          "sample",
-			Term:                0,
-			Weekspaid:           0,
-			Status:              0,
-			Principal:           0,
-			Interest:            0,
-			Others:              0,
-			Discounted:          0,
-			Netproceed:          0,
-			Balance:             0,
-			Prin:                0,
-			Intr:                0,
-			Oth:                 0,
-			Penalty:             0,
-			Waivedint:           0,
-			Disbby:              "sample",
-			Approvby:            "sample",
-			Cycle:               0,
-			Frequency:           0,
-			Annumdiv:            0,
-			Lngrpcode:           0,
-			Proff:               0,
-			Fundsource:          0,
-			Conintrate:          0,
-			Amortcond:           0,
-			Amortcondvalue:      0,
-			Classification_code: 0,
-			Classification_type: 0,
-			Remarks:             nil,
-			Amort:               nil,
-			IsLumpsum:           0,
-			LoanID:              nil,
-			AmortList:           []AmortList{},
-			Charges:             Charges{Acc: acc.Acc, Charge: []Charges{}},
-		},
-	}
-	return c.JSON(a)
-}
-
 // Janus kumware godoc
 // @Summary     /CoreAccounts/API/LoanInfo
 // @Description  /CoreAccounts/API/LoanInfo

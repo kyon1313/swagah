@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -30,70 +29,6 @@ type CustSavingInfo struct {
 
 type Acc struct {
 	Acc string `json:"acc"`
-}
-
-// Janus godoc
-// @Summary    Customer Savings Info
-// @Description  Customer Savings Info
-// @Tags         Janus Hard coded data
-// @Accept       json
-// @Produce      json
-// @Param        user body Acc true "Search"
-// @Success      200  {object} CustSavingInfo
-// @Failure      400  {object}  Errror
-// @Router       /swag/custSavingsinfo [post]
-func CustSavingsInfo(c *fiber.Ctx) error {
-	var acc Acc
-	if err := c.BodyParser(&acc); err != nil {
-		return c.SendString("server error")
-	}
-	a1 := []CustSavingInfo{
-		{
-			Cid:                0,
-			Acc:                acc.Acc,
-			AppType:            0,
-			AcctType:           0,
-			AccDesc:            "sample",
-			Dopen:              "sample",
-			Status:             0,
-			ClassificationCode: 0,
-			ClassificationType: 0,
-			Balance:            0.0,
-		},
-	}
-	a2 := []CustSavingInfo{
-		{
-			Cid:                0,
-			Acc:                acc.Acc,
-			AppType:            0,
-			AcctType:           0,
-			AccDesc:            "sample2",
-			Dopen:              "sample2",
-			Status:             0,
-			ClassificationCode: 0,
-			ClassificationType: 0,
-			Balance:            0.0,
-		},
-	}
-	a3 := []CustSavingInfo{
-		{
-			Cid:                0,
-			Acc:                acc.Acc,
-			AppType:            0,
-			AcctType:           0,
-			AccDesc:            "sample3",
-			Dopen:              "sample3",
-			Status:             0,
-			ClassificationCode: 0,
-			ClassificationType: 0,
-			Balance:            0.0,
-		},
-	}
-
-	r := [][]CustSavingInfo{a1, a2, a3}
-
-	random := rand.Intn(len(r))
-	return c.JSON(r[random])
 }
 
 // Janus kumware godoc

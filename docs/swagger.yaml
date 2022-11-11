@@ -1,5 +1,207 @@
 basePath: /
 definitions:
+  model.BugReport:
+    properties:
+      application_code:
+        type: integer
+      cid:
+        type: integer
+      date:
+        type: string
+      details:
+        additionalProperties: true
+        type: object
+      insti_code:
+        type: integer
+      status:
+        type: integer
+    type: object
+  model.BugReportResponses:
+    properties:
+      application_code:
+        type: integer
+      cid:
+        type: integer
+      date:
+        type: string
+      id:
+        type: integer
+      insti_code:
+        type: integer
+      status:
+        type: integer
+    type: object
+  model.DeletePreferredAccount:
+    properties:
+      cid:
+        type: string
+      target_cid:
+        type: string
+    type: object
+  model.Error:
+    properties:
+      message:
+        type: string
+      retcode:
+        type: integer
+    type: object
+  model.FeeStructure:
+    properties:
+      agent_income:
+        type: number
+      agent_target_income:
+        type: number
+      bancnet_income:
+        type: number
+      bank_income:
+        type: number
+      bank_income_flag:
+        type: boolean
+      client_type:
+        type: string
+      cmit_fee:
+        type: number
+      created_by:
+        type: integer
+      created_date:
+        type: string
+      end_range:
+        type: integer
+      fds_fee:
+        type: number
+      fee_id:
+        type: integer
+      last_updated_by:
+        type: integer
+      last_updated_date:
+        type: string
+      start_range:
+        type: integer
+      telco_fee:
+        type: number
+      total_charge:
+        type: number
+      trans_type:
+        type: string
+    type: object
+  model.FeeStructureRequest:
+    properties:
+      fee_id:
+        type: integer
+    type: object
+  model.GetAtm:
+    properties:
+      atm_address:
+        type: string
+      atm_city:
+        type: string
+      atm_description:
+        type: string
+      atm_id:
+        type: integer
+      atm_latitude:
+        type: number
+      atm_longitude:
+        type: number
+      atm_type:
+        type: string
+      created_by:
+        type: integer
+      created_date:
+        type: string
+      inst_code:
+        type: string
+      last_updated_by:
+        type: integer
+      last_updated_date:
+        type: string
+    type: object
+  model.GetAtmByInsti:
+    properties:
+      inst_code:
+        type: string
+    type: object
+  model.GetReports:
+    properties:
+      cid:
+        type: integer
+      status:
+        type: integer
+    type: object
+  model.GetSaveAcc:
+    properties:
+      cid:
+        type: string
+    type: object
+  model.GetSaveAccAndTCid:
+    properties:
+      cid:
+        type: string
+      target_cid:
+        type: string
+    type: object
+  model.GetparamWebtools:
+    properties:
+      app_type:
+        type: string
+      created_by:
+        type: integer
+      created_date: {}
+      last_updated_by: {}
+      last_updated_date: {}
+      param_desc:
+        type: string
+      param_id:
+        type: integer
+      param_name:
+        type: string
+      param_status:
+        type: string
+      param_value:
+        type: string
+      process_id: {}
+      value_lookup: {}
+      value_type:
+        type: string
+    type: object
+  model.PreferredFT:
+    properties:
+      account:
+        type: string
+      account_type:
+        type: string
+      cid:
+        type: string
+      date_added:
+        type: string
+      insti:
+        type: string
+      mobile:
+        type: string
+      name:
+        type: string
+      target_cid:
+        type: string
+    type: object
+  model.SendBugReport:
+    properties:
+      application_code:
+        type: integer
+      cid:
+        type: integer
+      details:
+        additionalProperties: true
+        type: object
+      insti_code:
+        type: integer
+    type: object
+  model.UpdateBugreports:
+    properties:
+      id:
+        type: integer
+      status:
+        type: integer
+    type: object
   route.Acc:
     properties:
       acc:
@@ -430,6 +632,290 @@ info:
   title: My Fucking Swaggah Jagahh.
   version: "1.0"
 paths:
+  /:
+    post:
+      consumes:
+      - application/json
+      description: GetInstiFees Not done
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.FeeStructureRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.FeeStructure'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: GetInstiFees Not done
+      tags:
+      - GetFees
+  /GetBugReports:
+    post:
+      consumes:
+      - application/json
+      description: GetBugReports
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetReports'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BugReport'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: GetBugReports
+      tags:
+      - BugReport
+  /SendBugReport:
+    post:
+      consumes:
+      - application/json
+      description: Send But Report
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.SendBugReport'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BugReport'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Send Bug Report
+      tags:
+      - BugReport
+  /ServerDate:
+    get:
+      consumes:
+      - application/json
+      description: Get Server Date
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Get Server Date
+      tags:
+      - ServerTime
+  /ServerTimestamp:
+    get:
+      consumes:
+      - application/json
+      description: Get Server Timestamp
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Get Server Timestamp
+      tags:
+      - ServerTime
+  /deleteSavedAccount:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteSavedAccount
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.DeletePreferredAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: DeleteSavedAccount
+      tags:
+      - SavedAccount
+  /getAllAtm:
+    get:
+      consumes:
+      - application/json
+      description: Get Atm
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.GetAtm'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Get Atm
+      tags:
+      - GetAtm
+  /getAllFees:
+    get:
+      consumes:
+      - application/json
+      description: Get All Fees
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.FeeStructure'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Get All Fees
+      tags:
+      - GetFees
+  /getInstiAtm:
+    post:
+      consumes:
+      - application/json
+      description: Get Insti Atm
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAtmByInsti'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.GetAtm'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Get Insti Atm
+      tags:
+      - GetAtm
+  /getSavedAccountbyCid:
+    post:
+      consumes:
+      - application/json
+      description: GetSavedAccountbyCid
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetSaveAcc'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PreferredFT'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: GetSavedAccountbyCid
+      tags:
+      - SavedAccount
+  /getSavedAccountbyCidAndtargetCid:
+    post:
+      consumes:
+      - application/json
+      description: GetSavedAccount by Cid and target Cid
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetSaveAccAndTCid'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PreferredFT'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: GetSavedAccount by Cid and target Cid
+      tags:
+      - SavedAccount
+  /getSpecifiedFee:
+    post:
+      consumes:
+      - application/json
+      description: GetSpecifiedFee
+      parameters:
+      - description: Search
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.FeeStructureRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.FeeStructure'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: GetSpecifiedFee
+      tags:
+      - GetFees
   /janus/OpenPaymentTransaction/:
     post:
       consumes:
@@ -638,160 +1124,75 @@ paths:
       summary: CoreAccounts/API/mobile/api/v1/SearchCustomerCID
       tags:
       - Janus
-  /swag/custSavingsList:
+  /updateBugreport:
     post:
       consumes:
       - application/json
-      description: Customer Savings List
+      description: Update Bug Report
       parameters:
       - description: Search
         in: body
         name: user
         required: true
         schema:
-          $ref: '#/definitions/route.Use'
+          $ref: '#/definitions/model.UpdateBugreports'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/route.CustSavingsListss'
+            $ref: '#/definitions/model.BugReportResponses'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Customer Savings List
+            $ref: '#/definitions/model.Error'
+      summary: Update Bug Report
       tags:
-      - Janus Hard coded data
-  /swag/custSavingsinfo:
+      - BugReport
+  /updateSavedAccount:
     post:
       consumes:
       - application/json
-      description: Customer Savings Info
+      description: Fields are optional except cid and target cid
       parameters:
       - description: Search
         in: body
         name: user
         required: true
         schema:
-          $ref: '#/definitions/route.Acc'
+          $ref: '#/definitions/model.PreferredFT'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/route.CustSavingInfo'
+            $ref: '#/definitions/model.PreferredFT'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Customer Savings Info
+            $ref: '#/definitions/model.Error'
+      summary: UpdateSavedAccount
       tags:
-      - Janus Hard coded data
-  /swag/generateCol:
-    post:
+      - SavedAccount
+  /webtoolParams:
+    get:
       consumes:
       - application/json
-      description: Generate Col
-      parameters:
-      - description: Search
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/route.Use'
+      description: Get WebTool Parameters
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/route.GenerateCol'
+            $ref: '#/definitions/model.GetparamWebtools'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Generate  Col
+            $ref: '#/definitions/model.Error'
+      summary: Get WebTool Parameters
       tags:
-      - Janus Hard coded data
-  /swag/loanInfo:
-    post:
-      consumes:
-      - application/json
-      description: Loan Info
-      parameters:
-      - description: Search
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/route.Acc'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/route.LaonInfo'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: Loan Info
-      tags:
-      - Janus Hard coded data
-  /swag/loanlisthard:
-    post:
-      consumes:
-      - application/json
-      description: Loanlist
-      parameters:
-      - description: Search
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/route.Use'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/route.LoanList'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: LoanList
-      tags:
-      - Janus Hard coded data
-  /swag/search/:
-    post:
-      consumes:
-      - application/json
-      description: SearchCustomerCID
-      parameters:
-      - description: Search
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/route.Use'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/route.JsonStruct'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/route.Errror'
-      summary: SearchCustomerCID
-      tags:
-      - Janus Hard coded data
+      - GetWebToolParams
 swagger: "2.0"
